@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "license": "MIT",
-  "author": "",
+  "author": "wjsxqs",
   "private": false,
   "type": "module",
   "exports": {
@@ -18,16 +18,19 @@
   "files": [
     "dist"
   ],
+  "homepage": "https://github.com/wjsxqs/w3poker-solana-nft.git",
+  "repository": "https://github.com/wjsxqs/w3poker-solana-nft.git",
   "scripts": {
     "build": "rimraf dist && tsc && vite build",
-    "test": "TS_NODE_COMPILER_OPTIONS='{ \"module\": \"commonjs\", \"target\": \"es2020\" }' ts-mocha --require esm 'test/**/*.test.ts'",
-    "gen": "solita",
-    "lint": "eslint . --ext .ts --fix",
-    "format": "prettier --write \"src/**/*.ts\"",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint",
+    "test": "cross-env TS_NODE_COMPILER_OPTIONS='{ \"module\": \"commonjs\", \"target\": \"es2020\" }' ts-mocha --timeout 1000000 --require esm 'test/**/*.test.ts'",
+    "lint": "eslint \"{src,test}/**/*.ts\"",
+    "prettier": "prettier --write \"{src,test}/**/*.ts\"",
+    "postversion": "git add package.json && git commit -m \"Update $npm_package_name to v$npm_package_version\" && git tag $npm_package_name@$npm_package_version",
+    "prepublishOnly": "yarn build",
     "publishPublic": "npm publish --access public"
+  },
+  "engines": {
+    "node": ">=16"
   },
   "dependencies": {
     "@metaplex-foundation/beet": "^0.7.1",
@@ -47,6 +50,7 @@
     "@typescript-eslint/eslint-plugin": "^5.45.0",
     "@typescript-eslint/parser": "^5.45.0",
     "chai": "^4.3.7",
+    "cross-env": "^7.0.3",
     "eslint": "^8.28.0",
     "esm": "^3.2.25",
     "mocha": "^10.1.0",
