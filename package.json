@@ -26,7 +26,7 @@
     "lint": "eslint \"{src,test}/**/*.ts\"",
     "prettier": "prettier --write \"{src,test}/**/*.ts\"",
     "postversion": "git add package.json && git commit -m \"Update $npm_package_name to v$npm_package_version\" && git tag $npm_package_name@$npm_package_version",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "yarn lint && yarn build",
     "publishPublic": "npm publish --access public"
   },
   "engines": {
