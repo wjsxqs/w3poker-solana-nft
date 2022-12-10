@@ -10,9 +10,9 @@ describe('buy', () => {
   });
 
   it('buy success', async () => {
+    const payId = 101;
     const toAccount = Keypair.generate();
-
-    const signature = await buy(connection, toAccount.publicKey, feePayer);
+    const signature = await buy(connection, payId, toAccount.publicKey, feePayer);
     console.log('signature', signature);
   });
 });

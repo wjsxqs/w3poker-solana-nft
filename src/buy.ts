@@ -34,7 +34,12 @@ import {
   getGameVaultPda,
 } from './utils';
 
-export async function buy(connection: Connection, to: PublicKey, payer: Keypair): Promise<string> {
+export async function buy(
+  connection: Connection,
+  payId: number,
+  to: PublicKey,
+  payer: Keypair,
+): Promise<string> {
   try {
     // Derive the pda address
 
@@ -110,7 +115,7 @@ export async function buy(connection: Connection, to: PublicKey, payer: Keypair)
     // buy instruction
     ixs.push(
       createBuyInstruction(accounts, {
-        payId: 101,
+        payId: payId,
         referralCode: null,
       }),
     );
@@ -123,7 +128,11 @@ export async function buy(connection: Connection, to: PublicKey, payer: Keypair)
   }
 }
 
-export async function buyAndDeposit(connection: Connection, payer: Keypair): Promise<string> {
+export async function buyAndDeposit(
+  connection: Connection,
+  payId: number,
+  payer: Keypair,
+): Promise<string> {
   try {
     // Derive the pda address
 
@@ -219,7 +228,7 @@ export async function buyAndDeposit(connection: Connection, payer: Keypair): Pro
     // buyAndDeposit instruction
     ixs.push(
       createBuyAndDepositInstruction(accounts, {
-        payId: 101,
+        payId: payId,
         referralCode: null,
       }),
     );
